@@ -42,6 +42,12 @@
     },
     "contentMarkdown": {
       "type": "richtext"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::blog-category.blog-category",
+      "inversedBy": "blog_posts"
     }
   }
 }
