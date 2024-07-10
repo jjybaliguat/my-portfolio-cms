@@ -7,11 +7,11 @@ export default ({ env }) => {
     mysql: {
       connection: {
         connectionString: env('DATABASE_URL'),
-        host: env('DATABASE_HOST', 'localhost'),
-        port: env.int('DATABASE_PORT', 3306),
-        database: env('DATABASE_NAME', 'strapi'),
-        user: env('DATABASE_USERNAME', 'strapi'),
-        password: env('DATABASE_PASSWORD', 'strapi'),
+        host: env('DATABASE_HOST', 'dpg-cq7b1ijv2p9s739vv6u0-a'),
+        port: env.int('DATABASE_PORT', 5432),
+        database: env('DATABASE_NAME', 'cdm_cms'),
+        user: env('DATABASE_USERNAME', 'root'),
+        password: env('DATABASE_PASSWORD', 'dxsKw0UnvNIGUc8erIWDqTeTwpjOS9Gw'),
         ssl: env.bool('DATABASE_SSL', false) && {
           key: env('DATABASE_SSL_KEY', undefined),
           cert: env('DATABASE_SSL_CERT', undefined),
