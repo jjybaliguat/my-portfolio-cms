@@ -1,9 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "blog_categories",
+  "collectionName": "categories",
   "info": {
-    "singularName": "blog-category",
-    "pluralName": "blog-categories",
+    "singularName": "category",
+    "pluralName": "categories",
     "displayName": "Blog Category",
     "description": ""
   },
@@ -12,14 +12,19 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "category": {
+    "name": {
       "type": "string",
       "required": true
     },
-    "blog_posts": {
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "blogs": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::blog-post.blog-post",
+      "target": "api::blog.blog",
       "mappedBy": "category"
     }
   }
