@@ -19,6 +19,20 @@ export default {
         danger700: "#e23a2d",
       },
     },
+    translations: {
+      en: {
+        "app.components.LeftMenu.navbrand.title": "CDM CMS",
+  
+        // "app.components.LeftMenu.navbrand.workplace": "Testing",
+  
+        "Auth.form.welcome.title": "Welcom to CDM CMS",
+  
+        "Auth.form.welcome.subtitle": "Login to your account",
+  
+        "Settings.profile.form.section.experience.interfaceLanguageHelp":
+          "Preference changes will apply only to you.",
+      },
+    },
     tutorials: false,
     notification: { release: false},
     locales: [
