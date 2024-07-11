@@ -14,7 +14,9 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "maxLength": 255,
+      "unique": true
     },
     "description": {
       "type": "text",
@@ -47,6 +49,9 @@
       "relation": "oneToMany",
       "target": "api::comment.comment",
       "mappedBy": "blog"
+    },
+    "contentRichtext": {
+      "type": "blocks"
     }
   }
 }

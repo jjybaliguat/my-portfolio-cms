@@ -1,5 +1,5 @@
 import AuthLogo from "./extensions/cdm_logo.png";
-import Favicon from "./extensions/cdm_logo.ico";
+import favicon from "./extensions/cdm_logo.ico";
 
 export default {
   config: {
@@ -7,7 +7,10 @@ export default {
       logo: AuthLogo
     },
     head: {
-      favicon: Favicon,
+      favicon: favicon,
+    },
+    menu: {
+      logo: AuthLogo,
     },
     theme: {
       colors: {
