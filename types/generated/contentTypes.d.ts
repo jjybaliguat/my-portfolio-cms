@@ -859,7 +859,14 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       'oneToMany',
       'api::comment.comment'
     >;
-    contentRichtext: Attribute.Blocks;
+    contentHtml: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'HTML';
+          preset: 'rich';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

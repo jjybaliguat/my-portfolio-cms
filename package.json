@@ -11,6 +11,7 @@
     "deploy": "strapi deploy"
   },
   "dependencies": {
+    "@ckeditor/strapi-plugin-ckeditor": "^0.0.12",
     "@strapi/plugin-cloud": "4.25.2",
     "@strapi/plugin-i18n": "4.25.2",
     "@strapi/plugin-users-permissions": "4.25.2",
@@ -23,6 +24,7 @@
     "strapi-plugin-slugify": "^2.3.8",
     "styled-components": "5.3.3"
   },
+  "workspaces": ["./src/plugins/strapi-plugin-ckeditor"],
   "author": {
     "name": "A Strapi developer"
   },
