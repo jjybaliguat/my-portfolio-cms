@@ -1,22 +1,22 @@
 export default ({ env }) => ({
-    slugify: {
-        enabled: true,
-        config: {
-          contentTypes: {
-            blog: {
-              field: 'slug',
-              references: 'title',
-            },
-            category: {
-              field: 'slug',
-              references: 'name',
-            },
-          },
-        },
-      },
   ckeditor: {
     enabled: true,
     resolve: "./src/plugins/strapi-plugin-ckeditor"
+  },
+  slugify: {
+    enabled: true,
+    config: {
+      contentTypes: {
+        blog: {
+          field: 'slug',
+          references: 'title',
+        },
+        category: {
+          field: 'slug',
+          references: 'name',
+        },
+      },
+    },
   },
   upload: {
     config: {
@@ -30,6 +30,13 @@ export default ({ env }) => ({
         upload: {},
         uploadStream: {},
         delete: {},
+      },
+      breakpoints: {
+        xlarge: 1920,
+        large: 1000,
+        medium: 750,
+        small: 500,
+        xsmall: 64
       },
     },
   },
