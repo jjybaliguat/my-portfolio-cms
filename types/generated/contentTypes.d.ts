@@ -948,6 +948,37 @@ export interface ApiCommentComment extends Schema.CollectionType {
   };
 }
 
+export interface ApiMissionMission extends Schema.SingleType {
+  collectionName: 'missions';
+  info: {
+    singularName: 'mission';
+    pluralName: 'missions';
+    displayName: 'Mission Vision';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    mission: Attribute.Text;
+    vision: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::mission.mission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::mission.mission',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -970,6 +1001,7 @@ declare module '@strapi/types' {
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
       'api::comment.comment': ApiCommentComment;
+      'api::mission.mission': ApiMissionMission;
     }
   }
 }
