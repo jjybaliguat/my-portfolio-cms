@@ -846,7 +846,6 @@ export interface ApiBlogBlog extends Schema.CollectionType {
         maxLength: 255;
       }>;
     description: Attribute.Text;
-    content: Attribute.RichText & Attribute.Required;
     thumbnail: Attribute.Media<'images'> & Attribute.Required;
     slug: Attribute.UID<'api::blog.blog', 'title'>;
     category: Attribute.Relation<
@@ -859,7 +858,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       'oneToMany',
       'api::comment.comment'
     >;
-    contentHtml: Attribute.RichText &
+    content: Attribute.RichText &
       Attribute.CustomField<
         'plugin::ckeditor.CKEditor',
         {

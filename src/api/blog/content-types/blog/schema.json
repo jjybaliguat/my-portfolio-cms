@@ -22,10 +22,6 @@
       "type": "text",
       "required": false
     },
-    "content": {
-      "type": "richtext",
-      "required": true
-    },
     "thumbnail": {
       "type": "media",
       "multiple": false,
@@ -50,7 +46,7 @@
       "target": "api::comment.comment",
       "mappedBy": "blog"
     },
-    "contentHtml": {
+    "content": {
       "type": "customField",
       "options": {
         "output": "HTML",
