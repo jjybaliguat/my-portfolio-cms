@@ -25,9 +25,6 @@
     "strapi-plugin-slugify": "^2.3.8",
     "styled-components": "5.3.3"
   },
-  "workspaces": [
-    "./src/plugins/strapi-plugin-ckeditor"
-  ],
   "author": {
     "name": "A Strapi developer"
   },
