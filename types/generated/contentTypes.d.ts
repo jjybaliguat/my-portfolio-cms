@@ -949,6 +949,36 @@ export interface ApiCommentComment extends Schema.CollectionType {
   };
 }
 
+export interface ApiMaincarouselMaincarousel extends Schema.CollectionType {
+  collectionName: 'maincarousels';
+  info: {
+    singularName: 'maincarousel';
+    pluralName: 'maincarousels';
+    displayName: 'Main Image Carousel';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    image: Attribute.Media<'images'> & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::maincarousel.maincarousel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::maincarousel.maincarousel',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMissionMission extends Schema.SingleType {
   collectionName: 'missions';
   info: {
@@ -1002,6 +1032,7 @@ declare module '@strapi/types' {
       'api::blog.blog': ApiBlogBlog;
       'api::category.category': ApiCategoryCategory;
       'api::comment.comment': ApiCommentComment;
+      'api::maincarousel.maincarousel': ApiMaincarouselMaincarousel;
       'api::mission.mission': ApiMissionMission;
     }
   }
