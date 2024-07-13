@@ -866,6 +866,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
           preset: 'rich';
         }
       >;
+    SEO: Attribute.Component<'page-properties-seo.seo'> & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
