@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "author": {
-      "type": "email"
-    },
     "comment": {
       "type": "text"
     },
@@ -22,6 +19,12 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::blog.blog",
+      "inversedBy": "comments"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
       "inversedBy": "comments"
     }
   }
