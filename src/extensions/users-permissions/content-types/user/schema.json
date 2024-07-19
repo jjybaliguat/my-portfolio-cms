@@ -73,6 +73,12 @@
     },
     "jwt": {
       "type": "text"
+    },
+    "likes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::like.like",
+      "mappedBy": "author"
     }
   }
 }
