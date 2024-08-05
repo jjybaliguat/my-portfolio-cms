@@ -58,4 +58,9 @@ export default ({ env }) => ({
       },
     },
   },
+  "contact-form": {
+    // name of your plugin, kebab-cased
+    enabled: true,
+    resolve: "./src/plugins/contact-form", // path to the plugin folder
+  },
 });

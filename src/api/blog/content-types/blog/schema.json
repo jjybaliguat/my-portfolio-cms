@@ -59,6 +59,9 @@
       "repeatable": false,
       "component": "page-properties-seo.seo",
       "required": true
+    },
+    "mdx": {
+      "type": "richtext"
     }
   }
 }

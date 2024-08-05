@@ -10,6 +10,8 @@ export default [
         directives: {
           'connect-src': ["'self'", 'https:'],
           'img-src': ["'self'", 'data:', 'blob:', 'market-assets.strapi.io', 'res.cloudinary.com'],
+          "script-src": ["'self'", "editor.unlayer.com"],
+          "frame-src": ["'self'", "editor.unlayer.com"],
           'media-src': [
             "'self'",
             'data:',
