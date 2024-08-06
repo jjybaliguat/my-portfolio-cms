@@ -11,11 +11,5 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {
-    "Hero": {
-      "type": "component",
-      "repeatable": false,
-      "component": "sections.hero"
-    }
-  }
+  "attributes": {}
 }

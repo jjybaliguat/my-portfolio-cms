@@ -1159,7 +1159,6 @@ export interface ApiHeroSectionHeroSection extends Schema.SingleType {
     draftAndPublish: true;
   };
   attributes: {
-    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

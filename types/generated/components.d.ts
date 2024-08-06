@@ -61,22 +61,6 @@ export interface PagePropertiesSeoSeo extends Schema.Component {
   };
 }
 
-export interface SectionsHero extends Schema.Component {
-  collectionName: 'components_sections_heroes';
-  info: {
-    displayName: 'Hero';
-    icon: 'dashboard';
-  };
-  attributes: {
-    navItems: Attribute.Component<'components.nav-item', true>;
-    topRightCTA: Attribute.Component<'components.cta'>;
-    anouncement: Attribute.Component<'components.announcement'>;
-    heroTitle: Attribute.String;
-    shortDescription: Attribute.String;
-    ctaGroup: Attribute.Component<'components.cta', true>;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
@@ -85,7 +69,6 @@ declare module '@strapi/types' {
       'components.nav-item': ComponentsNavItem;
       'page-properties-seo.meta-tag': PagePropertiesSeoMetaTag;
       'page-properties-seo.seo': PagePropertiesSeoSeo;
-      'sections.hero': SectionsHero;
     }
   }
 }
