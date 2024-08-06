@@ -1,5 +1,41 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
+export interface ComponentsAnnouncement extends Schema.Component {
+  collectionName: 'components_components_announcements';
+  info: {
+    displayName: 'Announcement';
+  };
+  attributes: {
+    anouncementBody: Attribute.String;
+    cta: Attribute.Component<'components.cta'>;
+  };
+}
+
+export interface ComponentsCta extends Schema.Component {
+  collectionName: 'components_components_ctas';
+  info: {
+    displayName: 'CTA';
+    icon: 'phone';
+  };
+  attributes: {
+    name: Attribute.String;
+    link: Attribute.String;
+    type: Attribute.Enumeration<['primary', 'secondary']>;
+  };
+}
+
+export interface ComponentsNavItem extends Schema.Component {
+  collectionName: 'components_components_nav_items';
+  info: {
+    displayName: 'navItem';
+    icon: 'command';
+  };
+  attributes: {
+    name: Attribute.String;
+    link: Attribute.String;
+  };
+}
+
 export interface PagePropertiesSeoMetaTag extends Schema.Component {
   collectionName: 'components_page_properties_seo_meta_tags';
   info: {
@@ -25,11 +61,31 @@ export interface PagePropertiesSeoSeo extends Schema.Component {
   };
 }
 
+export interface SectionsHero extends Schema.Component {
+  collectionName: 'components_sections_heroes';
+  info: {
+    displayName: 'Hero';
+    icon: 'dashboard';
+  };
+  attributes: {
+    navItems: Attribute.Component<'components.nav-item', true>;
+    topRightCTA: Attribute.Component<'components.cta'>;
+    anouncement: Attribute.Component<'components.announcement'>;
+    heroTitle: Attribute.String;
+    shortDescription: Attribute.String;
+    ctaGroup: Attribute.Component<'components.cta', true>;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
+      'components.announcement': ComponentsAnnouncement;
+      'components.cta': ComponentsCta;
+      'components.nav-item': ComponentsNavItem;
       'page-properties-seo.meta-tag': PagePropertiesSeoMetaTag;
       'page-properties-seo.seo': PagePropertiesSeoSeo;
+      'sections.hero': SectionsHero;
     }
   }
 }

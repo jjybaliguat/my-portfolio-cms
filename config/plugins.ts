@@ -58,6 +58,20 @@ export default ({ env }) => ({
       },
     },
   },
+  'qrcode-generator': {
+    enabled: true,
+    config: {
+      contentTypes: [
+        {
+          uid: 'api::cartel.cartel',
+          targetField: 'slug',
+          frontend: {
+            basePath: '/cartels',
+          },
+        },
+      ],
+    },
+  },
   "contact-form": {
     // name of your plugin, kebab-cased
     enabled: true,

@@ -629,6 +629,85 @@ export interface PluginSlugifySlug extends Schema.CollectionType {
   };
 }
 
+export interface PluginStrapiNewsletterNewsletter
+  extends Schema.CollectionType {
+  collectionName: 'newsletters';
+  info: {
+    singularName: 'newsletter';
+    pluralName: 'newsletters';
+    displayName: 'Newsletter';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    subject: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::strapi-newsletter.newsletter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::strapi-newsletter.newsletter',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface PluginStrapiNewsletterSubscribedUser
+  extends Schema.CollectionType {
+  collectionName: 'subscribed_user';
+  info: {
+    singularName: 'subscribed-user';
+    pluralName: 'subscribed-users';
+    displayName: 'Subscribed Users';
+  };
+  options: {
+    draftAndPublish: false;
+    comment: '';
+  };
+  pluginOptions: {
+    'content-manager': {
+      visible: false;
+    };
+    'content-type-builder': {
+      visible: false;
+    };
+  };
+  attributes: {
+    email: Attribute.Email & Attribute.Required & Attribute.Unique;
+    provider: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'plugin::strapi-newsletter.subscribed-user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'plugin::strapi-newsletter.subscribed-user',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginI18NLocale extends Schema.CollectionType {
   collectionName: 'i18n_locale';
   info: {
@@ -1074,13 +1153,13 @@ export interface ApiHeroSectionHeroSection extends Schema.SingleType {
     singularName: 'hero-section';
     pluralName: 'hero-sections';
     displayName: 'HeroSection';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    MainText: Attribute.String;
-    HeroImage: Attribute.Media<'images'>;
+    Hero: Attribute.Component<'sections.hero'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1205,6 +1284,8 @@ declare module '@strapi/types' {
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::slugify.slug': PluginSlugifySlug;
+      'plugin::strapi-newsletter.newsletter': PluginStrapiNewsletterNewsletter;
+      'plugin::strapi-newsletter.subscribed-user': PluginStrapiNewsletterSubscribedUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
