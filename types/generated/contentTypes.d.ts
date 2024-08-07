@@ -1147,29 +1147,65 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   };
 }
 
-export interface ApiHeroSectionHeroSection extends Schema.SingleType {
-  collectionName: 'hero_sections';
+export interface ApiGlobalGlobal extends Schema.SingleType {
+  collectionName: 'globals';
   info: {
-    singularName: 'hero-section';
-    pluralName: 'hero-sections';
-    displayName: 'HeroSection';
+    singularName: 'global';
+    pluralName: 'globals';
+    displayName: 'Global';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    header: Attribute.Component<'layout.header'>;
+    footer: Attribute.Component<'layout.footer'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::hero-section.hero-section',
+      'api::global.global',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'api::hero-section.hero-section',
+      'api::global.global',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHomePageHomePage extends Schema.SingleType {
+  collectionName: 'home_pages';
+  info: {
+    singularName: 'home-page';
+    pluralName: 'home-pages';
+    displayName: 'Home Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.String;
+    blocks: Attribute.DynamicZone<['layout.hero-section']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::home-page.home-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::home-page.home-page',
       'oneToOne',
       'admin::user'
     > &
@@ -1237,37 +1273,6 @@ export interface ApiMaincarouselMaincarousel extends Schema.CollectionType {
   };
 }
 
-export interface ApiMissionMission extends Schema.SingleType {
-  collectionName: 'missions';
-  info: {
-    singularName: 'mission';
-    pluralName: 'missions';
-    displayName: 'Mission Vision';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    mission: Attribute.Text;
-    vision: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::mission.mission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::mission.mission',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1294,10 +1299,10 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::comment.comment': ApiCommentComment;
       'api::course.course': ApiCourseCourse;
-      'api::hero-section.hero-section': ApiHeroSectionHeroSection;
+      'api::global.global': ApiGlobalGlobal;
+      'api::home-page.home-page': ApiHomePageHomePage;
       'api::like.like': ApiLikeLike;
       'api::maincarousel.maincarousel': ApiMaincarouselMaincarousel;
-      'api::mission.mission': ApiMissionMission;
     }
   }
 }

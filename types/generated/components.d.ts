@@ -11,28 +11,53 @@ export interface ComponentsAnnouncement extends Schema.Component {
   };
 }
 
-export interface ComponentsCta extends Schema.Component {
-  collectionName: 'components_components_ctas';
+export interface ComponentsLink extends Schema.Component {
+  collectionName: 'components_components_links';
   info: {
-    displayName: 'CTA';
-    icon: 'phone';
+    displayName: 'Link';
   };
   attributes: {
-    name: Attribute.String;
-    link: Attribute.String;
-    type: Attribute.Enumeration<['primary', 'secondary']>;
+    text: Attribute.String;
+    url: Attribute.String;
+    isExternal: Attribute.Boolean & Attribute.DefaultTo<false>;
   };
 }
 
-export interface ComponentsNavItem extends Schema.Component {
-  collectionName: 'components_components_nav_items';
+export interface LayoutFooter extends Schema.Component {
+  collectionName: 'components_layout_footers';
   info: {
-    displayName: 'navItem';
-    icon: 'command';
+    displayName: 'Footer';
   };
   attributes: {
-    name: Attribute.String;
-    link: Attribute.String;
+    logoText: Attribute.Component<'components.link'>;
+    logo: Attribute.Media<'images'>;
+    socialLink: Attribute.Component<'components.link', true>;
+  };
+}
+
+export interface LayoutHeader extends Schema.Component {
+  collectionName: 'components_layout_headers';
+  info: {
+    displayName: 'Header';
+  };
+  attributes: {
+    logoText: Attribute.Component<'components.link'>;
+    logo: Attribute.Media<'images'>;
+    ctaButton: Attribute.Component<'components.link'>;
+  };
+}
+
+export interface LayoutHeroSection extends Schema.Component {
+  collectionName: 'components_layout_hero_sections';
+  info: {
+    displayName: 'Hero Section';
+    description: '';
+  };
+  attributes: {
+    heading: Attribute.String;
+    subHeading: Attribute.String;
+    image: Attribute.Media<'images'>;
+    link: Attribute.Component<'components.link'>;
   };
 }
 
@@ -65,8 +90,10 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'components.announcement': ComponentsAnnouncement;
-      'components.cta': ComponentsCta;
-      'components.nav-item': ComponentsNavItem;
+      'components.link': ComponentsLink;
+      'layout.footer': LayoutFooter;
+      'layout.header': LayoutHeader;
+      'layout.hero-section': LayoutHeroSection;
       'page-properties-seo.meta-tag': PagePropertiesSeoMetaTag;
       'page-properties-seo.seo': PagePropertiesSeoSeo;
     }

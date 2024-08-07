@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cdmmails",
+  "info": {
+    "singularName": "cdmmail",
+    "pluralName": "cdmmails",
+    "displayName": "CDM Mail"
+  },
+  "options": {
+    "draftAndPublish": false,
+    "comment": ""
+  },
+  "pluginOptions": {
+    "content-manager": {
+      "visible": true
+    }, 
+    "content-type-builder": {
+      "visible": true
+    }
+  },
+  "attributes": {
+    "recipient": {
+      "type": "email"
+    },
+    "subject": {
+      "type": "text"
+    },
+    "body": {
+      "type": "richtext"
+    }
+  }
+}
