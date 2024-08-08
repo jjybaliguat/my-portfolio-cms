@@ -12,23 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "title": {
-      "type": "string"
-    },
-    "description": {
-      "type": "text"
-    },
-    "header": {
-      "displayName": "Header",
+    "navigation": {
       "type": "component",
       "repeatable": false,
-      "component": "layout.header"
-    },
-    "footer": {
-      "displayName": "Footer",
-      "type": "component",
-      "repeatable": false,
-      "component": "layout.footer"
+      "component": "global.navigation"
     }
   }
 }

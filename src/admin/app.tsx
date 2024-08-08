@@ -1,17 +1,17 @@
-import AuthLogo from "./extensions/cdm_logo.png";
-import favicon from "./extensions/cdm_logo.ico";
+// import AuthLogo from "./extensions/cdm_logo.png";
+// import favicon from "./extensions/cdm_logo.ico";
 
 export default {
   config: {
-    auth:{
-      logo: AuthLogo
-    },
-    head: {
-      favicon: favicon,
-    },
-    menu: {
-      logo: AuthLogo,
-    },
+    // auth:{
+    //   logo: AuthLogo
+    // },
+    // head: {
+    //   favicon: favicon,
+    // },
+    // menu: {
+    //   logo: AuthLogo,
+    // },
     theme: {
       colors: {
         primary100: "#cdd9cc",
@@ -24,11 +24,11 @@ export default {
     },
     translations: {
       en: {
-        "app.components.LeftMenu.navbrand.title": "CDM CMS",
+        "app.components.LeftMenu.navbrand.title": "JJYB CMS",
   
         // "app.components.LeftMenu.navbrand.workplace": "Testing",
   
-        "Auth.form.welcome.title": "Welcom to CDM CMS",
+        "Auth.form.welcome.title": "Welcom to JJYB CMS",
   
         "Auth.form.welcome.subtitle": "Login to your account",
   

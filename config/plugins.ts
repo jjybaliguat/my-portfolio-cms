@@ -72,8 +72,4 @@ export default ({ env }) => ({
       ],
     },
   },
-  'cdmmail': {
-    enabled: false,
-    resolve: './src/plugins/cdmmail'
-  },
 });

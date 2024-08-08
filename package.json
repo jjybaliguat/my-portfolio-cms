@@ -4,9 +4,10 @@
   "version": "0.1.0",
   "description": "A Strapi application",
   "scripts": {
-    "develop": "strapi develop --watch-admin",
+    "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
+    "clear": "rm -rf cache",
     "strapi": "strapi",
     "deploy": "strapi deploy",
     "postinstall": "npm install @ckeditor/strapi-plugin-ckeditor"
@@ -23,6 +24,7 @@
     "@strapi/provider-email-nodemailer": "^4.25.3",
     "@strapi/provider-upload-cloudinary": "^4.25.3",
     "@strapi/strapi": "4.25.2",
+    "better-sqlite3": "^11.1.2",
     "mysql": "2.18.1",
     "pg": "^8.12.0",
     "react": "^18.0.0",

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_shared_image_links",
+  "info": {
+    "displayName": "socialLinks",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "href": {
+      "type": "string",
+      "required": true
+    },
+    "isExternal": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    }
+  }
+}

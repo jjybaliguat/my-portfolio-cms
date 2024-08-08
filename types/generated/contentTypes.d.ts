@@ -362,6 +362,63 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiGlobalGlobal extends Schema.SingleType {
+  collectionName: 'globals';
+  info: {
+    singularName: 'global';
+    pluralName: 'globals';
+    displayName: 'Global';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    navigation: Attribute.Component<'global.navigation'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::global.global',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::global.global',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPagePage extends Schema.CollectionType {
+  collectionName: 'pages';
+  info: {
+    singularName: 'page';
+    pluralName: 'pages';
+    displayName: 'page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    slug: Attribute.String;
+    blocks: Attribute.DynamicZone<['blocks.hero']>;
+    seo: Attribute.Component<'page-properties-seo.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -888,11 +945,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    comments: Attribute.Relation<
-      'plugin::users-permissions.user',
-      'oneToMany',
-      'api::comment.comment'
-    >;
     jwt: Attribute.Text;
     likes: Attribute.Relation<
       'plugin::users-permissions.user',
@@ -965,314 +1017,6 @@ export interface PluginEmailDesignerEmailTemplate
   };
 }
 
-export interface ApiBlogBlog extends Schema.CollectionType {
-  collectionName: 'blogs';
-  info: {
-    singularName: 'blog';
-    pluralName: 'blogs';
-    displayName: 'Blog Post';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.Unique &
-      Attribute.SetMinMaxLength<{
-        maxLength: 255;
-      }>;
-    description: Attribute.Text;
-    thumbnail: Attribute.Media<'images'> & Attribute.Required;
-    slug: Attribute.UID<'api::blog.blog', 'title'>;
-    category: Attribute.Relation<
-      'api::blog.blog',
-      'manyToOne',
-      'api::category.category'
-    >;
-    comments: Attribute.Relation<
-      'api::blog.blog',
-      'oneToMany',
-      'api::comment.comment'
-    >;
-    content: Attribute.RichText &
-      Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
-        {
-          output: 'HTML';
-          preset: 'rich';
-        }
-      >;
-    SEO: Attribute.Component<'page-properties-seo.seo'> & Attribute.Required;
-    mdx: Attribute.RichText;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCategoryCategory extends Schema.CollectionType {
-  collectionName: 'categories';
-  info: {
-    singularName: 'category';
-    pluralName: 'categories';
-    displayName: 'Blog Category';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required;
-    slug: Attribute.UID<'api::category.category', 'name'> & Attribute.Required;
-    blogs: Attribute.Relation<
-      'api::category.category',
-      'oneToMany',
-      'api::blog.blog'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCommentComment extends Schema.CollectionType {
-  collectionName: 'comments';
-  info: {
-    singularName: 'comment';
-    pluralName: 'comments';
-    displayName: 'Comment';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    comment: Attribute.Text;
-    blog: Attribute.Relation<
-      'api::comment.comment',
-      'manyToOne',
-      'api::blog.blog'
-    >;
-    author: Attribute.Relation<
-      'api::comment.comment',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    likes: Attribute.Relation<
-      'api::comment.comment',
-      'oneToMany',
-      'api::like.like'
-    >;
-    parent: Attribute.Relation<
-      'api::comment.comment',
-      'manyToOne',
-      'api::comment.comment'
-    >;
-    replies: Attribute.Relation<
-      'api::comment.comment',
-      'oneToMany',
-      'api::comment.comment'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::comment.comment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::comment.comment',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiCourseCourse extends Schema.CollectionType {
-  collectionName: 'courses';
-  info: {
-    singularName: 'course';
-    pluralName: 'courses';
-    displayName: 'Courses';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    course_name: Attribute.String;
-    course_img: Attribute.Media<'images'>;
-    units: Attribute.Integer;
-    content: Attribute.RichText &
-      Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
-        {
-          output: 'HTML';
-          preset: 'rich';
-        }
-      >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::course.course',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::course.course',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiGlobalGlobal extends Schema.SingleType {
-  collectionName: 'globals';
-  info: {
-    singularName: 'global';
-    pluralName: 'globals';
-    displayName: 'Global';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
-    header: Attribute.Component<'layout.header'>;
-    footer: Attribute.Component<'layout.footer'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::global.global',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::global.global',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiHomePageHomePage extends Schema.SingleType {
-  collectionName: 'home_pages';
-  info: {
-    singularName: 'home-page';
-    pluralName: 'home-pages';
-    displayName: 'Home Page';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    title: Attribute.String;
-    description: Attribute.String;
-    blocks: Attribute.DynamicZone<['layout.hero-section']>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::home-page.home-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::home-page.home-page',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiLikeLike extends Schema.CollectionType {
-  collectionName: 'likes';
-  info: {
-    singularName: 'like';
-    pluralName: 'likes';
-    displayName: 'Likes';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    comment: Attribute.Relation<
-      'api::like.like',
-      'manyToOne',
-      'api::comment.comment'
-    >;
-    author: Attribute.Relation<
-      'api::like.like',
-      'manyToOne',
-      'plugin::users-permissions.user'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::like.like', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMaincarouselMaincarousel extends Schema.CollectionType {
-  collectionName: 'maincarousels';
-  info: {
-    singularName: 'maincarousel';
-    pluralName: 'maincarousels';
-    displayName: 'Main Image Carousel';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    image: Attribute.Media<'images'> & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::maincarousel.maincarousel',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::maincarousel.maincarousel',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1283,6 +1027,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::global.global': ApiGlobalGlobal;
+      'api::page.page': ApiPagePage;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -1295,14 +1041,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::email-designer.email-template': PluginEmailDesignerEmailTemplate;
-      'api::blog.blog': ApiBlogBlog;
-      'api::category.category': ApiCategoryCategory;
-      'api::comment.comment': ApiCommentComment;
-      'api::course.course': ApiCourseCourse;
-      'api::global.global': ApiGlobalGlobal;
-      'api::home-page.home-page': ApiHomePageHomePage;
-      'api::like.like': ApiLikeLike;
-      'api::maincarousel.maincarousel': ApiMaincarouselMaincarousel;
     }
   }
 }
